@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="156dp"
         android:text="your public ip"
-        app:layout_constraintEnd_toStartOf="@+id/pubIp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPbIP"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,8 +37,8 @@
         android:text="Get"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toEndOf="@+id/pubIp"
-        app:layout_constraintTop_toBottomOf="@+id/privIP" />
+        app:layout_constraintStart_toEndOf="@+id/editTextPbIP"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPvtIP" />
 
     <Button
         android:id="@+id/button2"
@@ -48,10 +48,10 @@
         android:text="Get Details related to the IP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pubIp" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPbIP" />
 
     <EditText
-        android:id="@+id/privIP"
+        android:id="@+id/editTextPvtIP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/pubIp"
+        android:id="@+id/editTextPbIP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -71,10 +71,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/privIP" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPvtIP" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editTextRegion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -82,7 +82,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
 
     <TextView
         android:id="@+id/textView5"
@@ -92,12 +92,12 @@
         android:layout_marginEnd="88dp"
         android:text="country"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName5"
+        app:layout_constraintEnd_toStartOf="@+id/editTextCountry"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.344" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editTextCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -115,7 +115,7 @@
         android:layout_marginBottom="96dp"
         android:text="timezone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName6"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTimeZone"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -127,13 +127,13 @@
         android:layout_marginEnd="108dp"
         android:text="city"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toStartOf="@+id/editTextCity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.732" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/editTextTimeZone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -141,7 +141,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCountry" />
 
     <TextView
         android:id="@+id/textView4"
@@ -151,12 +151,12 @@
         android:layout_marginBottom="176dp"
         android:text="region"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegion"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editTextCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -164,6 +164,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
