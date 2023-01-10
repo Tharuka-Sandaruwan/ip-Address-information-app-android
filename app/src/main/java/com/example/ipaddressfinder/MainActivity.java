@@ -190,15 +190,17 @@ public class MainActivity extends AppCompatActivity {
                     city = jsonObj.getString("district");
                     region = jsonObj.getString("state_prov");
                     country = jsonObj.getString("country_name");
-                    timeZone = jsonObj.getString("time_zone");
+                    timeZone = jsonObj.getJSONObject("time_zone").getString("name");
+                    System.out.println("time zone is: "+timeZone);
 
-                   // System.out.println("city is"+this.city+" "+this.region +" "+this.country +" "+this.timeZone);
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                //    System.out.println("error occured bn 4");
+
                 }
             }
-           // System.out.println("i am running bn55");
+
             return null;
         }
         @Override
