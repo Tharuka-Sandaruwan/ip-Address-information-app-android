@@ -177,27 +177,28 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
-            System.out.println("i am running bn");
+
             // Making a request to url and getting response
-            String url = "http://ip-api.com/json/" + publicIP;
-            System.out.println(url);
+        //    String url = "http://ip-api.com/json/" + publicIP;
+            String url = "https://api.ipgeolocation.io/ipgeo?apiKey=c99070d25b994da39609cce20783cda7";
+
             String jsonStr = sh.makeServiceCall(url);
-            System.out.println("i am running bn 2");
+
             if (jsonStr != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
-                    city = jsonObj.getString("city");
-                    region = jsonObj.getString("regionName");
-                    country = jsonObj.getString("country");
-                    timeZone = jsonObj.getString("timezone");
-                    System.out.println("i am running bn 3");
-                    System.out.println("city is"+this.city+" "+this.region +" "+this.country +" "+this.timeZone);
+                    city = jsonObj.getString("district");
+                    region = jsonObj.getString("state_prov");
+                    country = jsonObj.getString("country_name");
+                    timeZone = jsonObj.getString("time_zone");
+
+                   // System.out.println("city is"+this.city+" "+this.region +" "+this.country +" "+this.timeZone);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("error occured bn 4");
+                //    System.out.println("error occured bn 4");
                 }
             }
-            System.out.println("i am running bn55");
+           // System.out.println("i am running bn55");
             return null;
         }
         @Override
