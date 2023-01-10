@@ -177,11 +177,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
-
+            System.out.println("i am running bn");
             // Making a request to url and getting response
             String url = "http://ip-api.com/json/" + publicIP;
+            System.out.println(url);
             String jsonStr = sh.makeServiceCall(url);
-
+            System.out.println("i am running bn 2");
             if (jsonStr != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
@@ -189,10 +190,14 @@ public class MainActivity extends AppCompatActivity {
                     region = jsonObj.getString("regionName");
                     country = jsonObj.getString("country");
                     timeZone = jsonObj.getString("timezone");
+                    System.out.println("i am running bn 3");
+                    System.out.println("city is"+this.city+" "+this.region +" "+this.country +" "+this.timeZone);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    System.out.println("error occured bn 4");
                 }
             }
+            System.out.println("i am running bn55");
             return null;
         }
         @Override
@@ -202,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
             editTextRegion.setText(this.region);
             editTextCountry.setText(this.country);
             editTextTimeZone.setText(this.timeZone);
+
+            System.out.println(this.city+" "+this.region +" "+this.country +" "+this.timeZone);
         }
 
     }
