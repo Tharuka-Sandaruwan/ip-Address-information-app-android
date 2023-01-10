@@ -118,4 +118,37 @@ public class MainActivity extends AppCompatActivity {
             new GetIPDetails(publicIP).execute();
         }
     }
+
+    private class GetMyPublicIP extends AsyncTask<Void, Void, Void> {
+        private String publicIP;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(MainActivity.this, "Retrieving Public IP Address", Toast.LENGTH_SHORT).show();
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            HttpHandler sh = new HttpHandler();
+            //Making a request to url and getting response
+            String url = "https://api.ipify.org/?format=json";
+            String jsonStr = sh.makeServiceCall(url);
+            System.out.println(jsonStr);
+            if (jsonStr != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    publicIP = jsonObj.getString("ip");
+                    System.out.println(publicIP);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            editTextPbIP.setText(this.publicIP);
+        }
+    }
 }
