@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         editTextRegion = findViewById(R.id.editTextRegion);
         editTextCountry = findViewById(R.id.editTextCountry);
         editTextTimeZone = findViewById(R.id.editTextTimeZone);
+
         editTextPvtIP.setText(getPrivateIP());
+
 
     }
 
