@@ -108,4 +108,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return privateIP;
     }
+
+    public void getPublicIP(View view) {
+        new GetMyPublicIP().execute();
+    }
+    public void getIPDetails(View view) {
+        String publicIP = editTextPbIP.getText().toString();
+        if (publicIP != null || !publicIP.equals("")) {
+            new GetIPDetails(publicIP).execute();
+        }
+    }
 }
