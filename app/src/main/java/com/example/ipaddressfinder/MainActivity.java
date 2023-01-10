@@ -29,6 +29,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText editTextPvtIP;
+    private EditText editTextPbIP;
+    private EditText editTextCity;
+    private EditText editTextRegion;
+    private EditText editTextCountry;
+    private EditText editTextTimeZone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
