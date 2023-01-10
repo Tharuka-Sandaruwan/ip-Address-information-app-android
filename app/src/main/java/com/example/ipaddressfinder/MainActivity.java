@@ -151,4 +151,55 @@ public class MainActivity extends AppCompatActivity {
             editTextPbIP.setText(this.publicIP);
         }
     }
+
+    private class GetIPDetails extends AsyncTask<Void, Void, Void> {
+
+        private String city;
+        private String region;
+        private String country;
+        private String timeZone;
+        private String publicIP;
+
+        GetIPDetails(String publicIP) {
+            this.publicIP = publicIP;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            Toast.makeText(MainActivity.this, "Retrieving IP Related Details", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            HttpHandler sh = new HttpHandler();
+
+            // Making a request to url and getting response
+            String url = "http://ip-api.com/json/" + publicIP;
+            String jsonStr = sh.makeServiceCall(url);
+
+            if (jsonStr != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    city = jsonObj.getString("city");
+                    region = jsonObj.getString("regionName");
+                    country = jsonObj.getString("country");
+                    timeZone = jsonObj.getString("timezone");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            editTextCity.setText(this.city);
+            editTextRegion.setText(this.region);
+            editTextCountry.setText(this.country);
+            editTextTimeZone.setText(this.timeZone);
+        }
+
+    }
 }
