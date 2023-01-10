@@ -40,5 +40,72 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editTextPvtIP = findViewById(R.id.editTextPvtIP);
+        editTextPbIP = findViewById(R.id.editTextPbIP);
+        editTextCity = findViewById(R.id.editTextCity);
+        editTextRegion = findViewById(R.id.editTextRegion);
+        editTextCountry = findViewById(R.id.editTextCountry);
+        editTextTimeZone = findViewById(R.id.editTextTimeZone);
+        editTextPvtIP.setText(getPrivateIP());
+
+    }
+
+    private String getPrivateIP() {
+        String privateIP = "";
+        final WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        if (wm.isWifiEnabled()) {
+            WifiInfo wifiInf = wm.getConnectionInfo();
+            privateIP = Formatter.formatIpAddress(wifiInf.getIpAddress());
+        } else {
+            final ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (networkInfo.isConnected()) {
+                try {
+                    List<NetworkInterface> networkInterfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+                    for (NetworkInterface networkInterface : networkInterfaces) {
+                        List<InetAddress> inetAddresses = Collections.list(networkInterface.getInetAddresses());
+                        for (InetAddress inetAddress : inetAddresses) {
+                            if (!inetAddress.isLoopbackAddress()) {
+                                privateIP = inetAddress.getHostAddress().toUpperCase();
+                            }
+                        }
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else{
+                privateIP="";
+                new AlertDialog.Builder(this)
+                        .setTitle("Require Internet")
+                        .setMessage("This App Requires Internet Connectivity. Please connect to the Internet and press OK")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(wm.isWifiEnabled()||cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()){
+                                    try {
+                                        Thread.sleep(2000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    editTextPvtIP.setText(getPrivateIP());
+                                }
+                                else {
+                                    getPrivateIP();
+                                }
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no,new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setCancelable(false)
+                        .show();
+
+            }
+        }
+        return privateIP;
     }
 }
